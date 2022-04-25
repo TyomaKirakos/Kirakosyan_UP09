@@ -1,13 +1,21 @@
 import modalAppearance from "./modules/modalOpen.js";
-import modalClose from "./modules/modalClose.js";
 import formValidation from "./modules/formValidation.js";
 import accordionsOpening from "./modules/accordionsOpening.js";
 import sendingForm from "./modules/sendingForm.js";
 import constructorAccordion from "./modules/constructorAccordion.js";
+import checkModalOpen from "./modules/checkModalOpen.js";
+import showHiddenBlocks from "./modules/showHiddenBlocks.js";
+import discountModalOpen from "./modules/discountModalOpen.js";
+import consultionModalOpen from "./modules/consultionModalOpen.js";
+import accoridonCalculator from "./modules/accoridonCalculator.js";
 
 modalAppearance();
-modalClose();
 formValidation();
 accordionsOpening();
 sendingForm();
 constructorAccordion();
+checkModalOpen();
+showHiddenBlocks();
+discountModalOpen();
+consultionModalOpen();
+accoridonCalculator();

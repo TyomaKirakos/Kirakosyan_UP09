@@ -32,7 +32,8 @@ const sendingForm = () => {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({fd})
                     })
-                    state.innerHTML = 'Отправлено!'
+                    .then(state.innerHTML = 'Отправлено!')
+                    .catch(state.innerHTML = 'Ошибка :(')
                 }
                 catch (error) {
                     state.innerHTML = 'Ошибка :('
