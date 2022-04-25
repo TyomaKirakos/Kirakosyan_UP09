@@ -4,7 +4,7 @@ const constructorAccordion = () => {
     const allConstructorPanels = contructorAccordion.querySelectorAll('.panel');
 
     contructorAccordion.addEventListener('click', (e) => {
-        if (e.target.classList.contains('construct-btn')){
+        if (e.target.closest('a.construct-btn')){
             let parentPanel = e.target.closest('.panel');
             allConstructorPanels.forEach((constructorPanel, index) => {
                 if (constructorPanel == parentPanel){
