@@ -1,23 +1,45 @@
 const sendingForm = () => {
-    const forms = document.querySelectorAll('.capture-form');
-    forms.forEach((form) => {
-        form.addEventListener('submit', async e => {
+    let body = {};
+
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('click', async e => {
             e.preventDefault()
-            const formState = form.querySelector('.form-state')
-            try {
-                formState.textContent = 'Отправка данных...'
-                await fetch('server.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        user_name: form.querySelector('input[name=user_name]').value,
-                        user_phone: form.querySelector('input[name=user_phone]').value
-                    })
-                })
-                formState.textContent = 'Успешно отправлено!'
+            if (!e.target.matches('button')) return;
+
+            let isFormFull = true;
+            let fd = new FormData(form);
+            let parsedFD = Object.fromEntries(fd);
+            let state = form.querySelector('.form-state');
+
+            state.innerHTML = '';
+
+            for (let key in parsedFD) {
+                if (parsedFD[key].length < 3){
+                    isFormFull = false;
+                }
             }
-            catch (error) {
-                formState.textContent = 'Что-то пошло не так...'
+            
+            fd.forEach((val, key) => {
+                body[key] = val;
+            })
+
+            if (isFormFull){
+                try {
+                    state.innerHTML = 'Загрузка...'
+                    await fetch('server.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({fd})
+                    })
+                    state.innerHTML = 'Отправлено!'
+                }
+                catch (error) {
+                    state.innerHTML = 'Ошибка :('
+                }
+                form.reset();
+            } else{
+                state.innerHTML = 'Заполните поля корректно';
             }
         })
     })

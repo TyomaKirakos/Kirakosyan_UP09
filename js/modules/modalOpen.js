@@ -3,7 +3,8 @@ const modalAppearance = () => {
     const callBtns = document.querySelectorAll('.call-btn');
 
     callBtns.forEach((callBtn) => {
-        callBtn.addEventListener('click', () => {
+        callBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             popupCall.style.display = 'block';
         })
     })

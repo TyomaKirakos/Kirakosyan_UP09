@@ -5,6 +5,7 @@ const modalClose = () => {
     modalArea.addEventListener('click', (e) => {
         e.preventDefault();
         if (e.target.classList.contains("popup-call") || e.target.classList.contains('popup-close')){
+            // state.innerHTML = ''
             modalArea.style.display = 'none';
         }
     })
